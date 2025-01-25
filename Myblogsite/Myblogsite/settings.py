@@ -147,4 +147,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = 'Myblogapp:user_login'  # Change the default login URL
 
-# AUTH_USER_MODEL = 'Myblogapp.CustomUser'
+import os
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'

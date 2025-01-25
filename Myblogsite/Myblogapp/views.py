@@ -71,31 +71,60 @@ def add_default_categories():
    for cat_name in categories:
        Category.objects.get_or_create(name=cat_name)
 
-# Update create_blog view
+# # Update create_blog view
+# @login_required
+# def create_blog(request):
+#    # Add default categories if none exist
+#    if Category.objects.count() == 0:
+#        add_default_categories()
+       
+#    if request.method == 'POST':
+#        title = request.POST.get('title')
+#        content = request.POST.get('content')
+#        category_id = request.POST.get('category')
+#        category = get_object_or_404(Category, id=category_id)
+       
+
+#        if title and content and category:
+#            Blog.objects.create(
+#                title=title,
+#                content=content, 
+#                category=category,
+#                author=request.user
+#            )
+#            return redirect('Myblogapp:blog_list')
+
+#    categories = Category.objects.all()
+#    return render(request, 'Myblogapp/create_blog.html', {'categories': categories})
+
 @login_required
 def create_blog(request):
-   # Add default categories if none exist
-   if Category.objects.count() == 0:
-       add_default_categories()
-       
-   if request.method == 'POST':
-       title = request.POST.get('title')
-       content = request.POST.get('content')
-       category_id = request.POST.get('category')
-       category = get_object_or_404(Category, id=category_id)
-       
+    if request.method == 'POST':
+        title = request.POST['title']
+        content = request.POST['content']
+        category_id = request.POST['category']
+        category = Category.objects.get(id=category_id)
+        image = request.FILES.get('image', None)  # Get the uploaded image, default to None
+        blog = Blog.objects.create(
+            title=title,
+            content=content,
+            category=category,
+            author=request.user,
+            image=image
+        )
+        return redirect('Myblogapp:blog_list')
 
-       if title and content and category:
-           Blog.objects.create(
-               title=title,
-               content=content, 
-               category=category,
-               author=request.user
-           )
-           return redirect('Myblogapp:blog_list')
+    categories = Category.objects.all()
+    return render(request, 'Myblogapp/create_blog.html', {'categories': categories})
 
-   categories = Category.objects.all()
-   return render(request, 'Myblogapp/create_blog.html', {'categories': categories})
+
+
+
+
+
+
+
+
 
 
 def user_signup(request):

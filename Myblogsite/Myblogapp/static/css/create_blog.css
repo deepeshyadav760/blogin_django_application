@@ -1,0 +1,43 @@
+.create-blog-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.create-blog-title {
+    color: #2d3748;
+    margin-bottom: 2rem;
+}
+
+.create-form-group {
+    margin-bottom: 1.5rem;
+}
+
+.create-form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #4a5568;
+    font-weight: 500;
+}
+
+.create-form-input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+}
+
+.create-form-textarea {
+    min-height: 200px;
+    resize: vertical;
+}
+
+.create-form-select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+}
+
+.create-form-actions {
+    margin-top: 2rem;
+}

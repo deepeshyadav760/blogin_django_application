@@ -1,0 +1,102 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+    /* Custom styles for the login page */
+    .login-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .login-card {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(5, 29, 216, 0.5);
+        padding: 30px;
+        width: 400px;
+        margin-bottom: 265px;
+        
+    }
+
+    .login-card h2 {
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+
+    .login-card .login-form-group {
+        margin-bottom: 15px; 
+    }
+
+    .login-card .form-control {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+    }
+
+    .login-card .form-control:focus {
+        border-color: #1a237e;
+        box-shadow: 0 0 5px rgba(26, 35, 126, 0.5);
+        outline: none;
+    }
+
+    .login-card .login-btn {
+        width: 100%;
+        padding: 12px;
+        background-color: #1a237e;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .login-card .login-btn:hover {
+        background-color: #283593;
+    }
+
+    .login-card p {
+        text-align: center;
+        margin-top: 15px;
+        font-size: 14px;
+        color: #777;
+    }
+
+    .login-card p a {
+        color: #1a237e;
+        text-decoration: none;
+    }
+
+    .login-card p a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<div class="login-container">
+    <div class="login-card">
+        <h2>Login</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="login-form-group">
+                <label for="username">Username</label>
+                <input type="text" name="username" class="form-control" required placeholder="Username">
+            </div>
+            <div class="login-form-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" class="form-control" required placeholder="Password">
+            </div>
+            <button type="submit" class="login-btn">Login</button>
+        </form>
+        <p>Don't have an account? <a href="{% url 'Myblogapp:user_signup' %}">Sign Up</a></p>
+    </div>
+</div>
+
+{% endblock %}

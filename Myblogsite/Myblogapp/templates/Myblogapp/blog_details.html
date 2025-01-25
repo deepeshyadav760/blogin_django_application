@@ -1,0 +1,141 @@
+{% extends 'index.html' %}
+{% block content %}
+
+<style>
+    /* Custom styles for the blog details page */
+    .blog-container {
+        margin: 20px auto;
+        max-width: 1100px;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(5, 29, 216, 0.5);
+    }
+
+    .blog-meta {
+        font-size: 14px;
+        color: #777;
+        margin-bottom: 15px;
+    }
+
+    .blog-category {
+        display: inline-block;
+        font-size: 13px;
+        background-color: #e8eaf6;
+        color: #1a237e;
+        padding: 5px 10px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+    }
+
+    .blog-content {
+        font-size: 16px;
+        line-height: 1.8;
+        color: #333;
+    }
+
+    .action-buttons {
+        margin-top: 20px;
+    }
+
+    .action-buttons .btn {
+        margin-right: 10px;
+    }
+
+    .comments-section {
+        margin-top: 40px;
+    }
+
+    .comments-section h3 {
+        font-size: 20px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    .comments-section textarea {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+    }
+
+    .comments-section textarea:focus {
+        border-color: #1a237e;
+        box-shadow: 0 0 5px rgba(26, 35, 126, 0.5);
+        outline: none;
+    }
+
+    .comments-section .btn {
+        background-color: #1a237e;
+        color: #fff;
+        border: none;
+    }
+
+    .comments-section .btn:hover {
+        background-color: #283593;
+    }
+
+    .comment {
+        margin-top: 15px;
+        padding: 10px 15px;
+        background-color: #f5f5f5;
+        border-left: 4px solid #1a237e;
+        border-radius: 5px;
+    }
+
+    .comment p {
+        margin: 0;
+        color: #555;
+    }
+
+    .comment strong {
+        color: #1a237e;
+    }
+
+    .no-comments {
+        font-size: 14px;
+        color: #777;
+        text-align: center;
+        margin-top: 20px;
+    }
+</style>
+
+<div class="blog-container">
+    <p class="blog-meta">Posted by {{ blog.author }} on {{ blog.created_at|date:"F d, Y" }}</p>
+    <div class="blog-category">Category: {{ blog.category.name }}</div>
+    
+    <div class="blog-content">
+        {{ blog.content|linebreaks }}
+    </div>
+
+    {% if user == blog.author %}
+        <div class="action-buttons">
+            <a href="{% url 'Myblogapp:blog_update' blog.id %}" class="btn btn-primary">Edit</a>
+            <a href="{% url 'Myblogapp:blog_delete' blog.id %}" class="btn btn-danger">Delete</a>
+        </div>
+    {% endif %}
+
+    <div class="comments-section">
+        <h3>Comments</h3>
+        {% if user.is_authenticated %}
+            <form method="POST" action="{% url 'Myblogapp:add_comment' blog.id %}">
+                {% csrf_token %}
+                <textarea name="content" class="form-control" required placeholder="Write your comment..."></textarea>
+                <button type="submit" class="btn mt-2">Add Comment</button>
+            </form>
+        {% endif %}
+
+        {% for comment in comments %}
+            <div class="comment">
+                <p><strong>{{ comment.user }}</strong> - {{ comment.created_at|date:"F d, Y" }}</p>
+                <p>{{ comment.content }}</p>
+            </div>
+        {% empty %}
+            <p class="no-comments">No comments yet.</p>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,101 @@
+{% extends 'index.html' %}
+{% block content %}
+{% load static %}
+
+<style>
+    /* Custom styles for the blog list page */
+    .blog-list-container {
+        margin: 20px auto;
+        max-width: 1100px;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(5, 29, 216, 0.5);
+    }
+
+    .blog-list-header {
+        font-size: 24px;
+        font-weight: bold;
+        color: #1a237e;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .create-blog-btn {
+        display: inline-block;
+        margin-bottom: 20px;
+        padding: 10px 15px;
+        background-color: #1a237e;
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 14px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    .create-blog-btn:hover {
+        background-color: #283593;
+    }
+
+    .blog-list {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .blog-item {
+        padding: 15px;
+        margin-bottom: 15px;
+        background-color: #f5f5f5;
+        border-radius: 5px;
+        transition: box-shadow 0.3s ease;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .blog-item:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .blog-link {
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: bold;
+        color: #1a237e;
+        transition: color 0.3s ease;
+    }
+
+    .blog-link:hover {
+        color: #283593;
+    }
+
+    .blog-date {
+        font-size: 14px;
+        color: #777;
+    }
+
+    .no-blogs {
+        text-align: center;
+        font-size: 16px;
+        color: #777;
+        margin-top: 20px;
+    }
+</style>
+
+<div class="blog-list-container">
+    <h1 class="blog-list-header">Blog Posts</h1>
+    <a href="{% url 'Myblogapp:blog_create' %}" class="create-blog-btn">Create New Blog Post</a>
+    <ul class="blog-list">
+        {% for blog in blogs %}
+            <li class="blog-item">
+                <a href="{% url 'Myblogapp:blog_details' blog.id %}" class="blog-link">{{ blog.title }}</a>
+                <span class="blog-date">{{ blog.created_at|date:"F d, Y" }}</span>
+            </li>
+        {% empty %}
+            <p class="no-blogs">No blog posts available.</p>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}

@@ -1,0 +1,108 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+    /* Custom styles for the signup page */
+    .signup-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .signup-card {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(5, 29, 216, 0.5);
+        padding: 30px;
+        width: 400px;
+        margin-bottom: 102px;
+    }
+
+    .signup-card h2 {
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .signup-card .form-group {
+        margin-bottom: 15px;
+    }
+
+    .signup-card .form-control {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+    }
+
+    .signup-card .form-control:focus {
+        border-color: #1a237e;
+        box-shadow: 0 0 5px rgba(26, 35, 126, 0.5);
+        outline: none;
+    }
+
+    .signup-card .signup-btn {
+        width: 100%;
+        padding: 12px;
+        background-color: #1a237e;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .signup-card .signup-btn:hover {
+        background-color: #283593;
+    }
+
+    .signup-card p {
+        text-align: center;
+        margin-top: 15px;
+        font-size: 14px;
+        color: #777;
+    }
+
+    .signup-card p a {
+        color: #1a237e;
+        text-decoration: none;
+    }
+
+    .signup-card p a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<div class="signup-container">
+    <div class="signup-card">
+        <h2>Sign Up</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" name="username" class="form-control" required placeholder="Username">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" name="email" class="form-control" required placeholder="Email">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" class="form-control" required placeholder="Password">
+            </div>
+            <div class="form-group">
+                <label for="confirm_password">Confirm Password</label>
+                <input type="password" name="confirm_password" class="form-control" required placeholder="Confirm Password">
+            </div>
+            <button type="submit" class="signup-btn">Sign Up</button>
+        </form>
+        <p>Already have an account? <a href="{% url 'Myblogapp:user_login' %}">Login</a></p>
+    </div>
+</div>
+
+{% endblock %}

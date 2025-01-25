@@ -1,0 +1,50 @@
+.blog-title {
+    font-size: 2.5rem;
+    color: #2d3748;
+    margin-bottom: 1rem;
+}
+
+.blog-meta {
+    color: #718096;
+    font-size: 0.95rem;
+}
+
+.blog-category {
+    display: inline-block;
+    background-color: #e2e8f0;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    margin: 1rem 0;
+}
+
+.blog-body {
+    line-height: 1.8;
+    color: #4a5568;
+    font-size: 1.1rem;
+}
+
+.blog-actions {
+    margin: 2rem 0;
+    padding: 1rem 0;
+    border-top: 1px solid #e2e8f0;
+}
+
+.comments-container {
+    background-color: #f8fafc;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-top: 3rem;
+}
+
+.comment-box {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    margin-top: 1rem;
+}
+
+.comment-form textarea {
+    min-height: 100px;
+    resize: vertical;
+}

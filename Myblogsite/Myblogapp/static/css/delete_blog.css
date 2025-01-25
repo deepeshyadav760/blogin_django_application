@@ -1,0 +1,25 @@
+.delete-container {
+    max-width: 600px;
+    margin: 3rem auto;
+    text-align: center;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.delete-title {
+    color: #2d3748;
+    margin-bottom: 1rem;
+}
+
+.delete-message {
+    color: #4a5568;
+    margin-bottom: 2rem;
+}
+
+.delete-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}

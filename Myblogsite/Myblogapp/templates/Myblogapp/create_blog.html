@@ -1,0 +1,101 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+    /* Custom styles for the create blog page */
+    .create-blog-container {
+        margin: 40px auto;
+        max-width: 1100px;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(5, 29, 216, 0.5);
+    }
+
+    .create-blog-header {
+        font-size: 24px;
+        font-weight: bold;
+        color: #1a237e;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .form-group label {
+        font-weight: bold;
+        color: #333;
+    }
+
+    .form-control {
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        transition: border-color 0.3s ease;
+    }
+
+    .form-control:focus {
+        border-color: #1a237e;
+        box-shadow: 0 0 5px rgba(26, 35, 126, 0.5);
+    }
+
+    .btn-primary {
+        background-color: #1a237e;
+        border: none;
+        padding: 10px 15px;
+        font-size: 14px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-primary:hover {
+        background-color: #283593;
+    }
+
+    .btn-secondary {
+        background-color: #757575;
+        border: none;
+        padding: 10px 15px;
+        font-size: 14px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-secondary:hover {
+        background-color: #616161;
+    }
+
+    .btn-container {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+    }
+</style>
+
+<div class="create-blog-container">
+    <h2 class="create-blog-header">Create New Blog Post</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group mb-3">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title" name="title" required>
+        </div>
+        <div class="form-group mb-3">
+            <label for="content">Content</label>
+            <textarea class="form-control" id="content" name="content" rows="5" required></textarea>
+        </div>
+        <div class="form-group mb-3">
+            <label for="category">Category</label>
+            <select class="form-control" id="category" name="category" required>
+                {% for category in categories %}
+                    <option value="{{ category.id }}">{{ category.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="btn-container mt-4">
+            <button type="submit" class="btn btn-primary">Create Post</button>
+            <a href="{% url 'Myblogapp:blog_list' %}" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

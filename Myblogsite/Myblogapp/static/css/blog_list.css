@@ -1,0 +1,36 @@
+.blog-list-title {
+    color: #2d3748;
+    margin-bottom: 2rem;
+}
+
+.create-post-link {
+    display: inline-block;
+    margin-bottom: 2rem;
+    color: #4299e1;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.blog-list {
+    list-style: none;
+    padding: 0;
+}
+
+.blog-list-item {
+    padding: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.blog-list-link {
+    color: #2d3748;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.blog-date {
+    color: #718096;
+    font-size: 0.9rem;
+}

@@ -21,7 +21,7 @@ Blogin is a simple blog web application built with Django. It allows users to cr
 
 - **Backend**: Django (Python)
 - **Frontend**: HTML, CSS, Bootstrap (for responsive design)
-- **Database**: SQLite (default in Django)
+- **Database**: MySQL
 - **Version Control**: Git
 
 ## Requirements

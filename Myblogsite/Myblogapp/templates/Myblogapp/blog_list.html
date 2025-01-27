@@ -1,12 +1,12 @@
 {% extends 'index.html' %}
-{% load static %}
+<!-- {% load static %} -->
 {% block content %}
 
 <div class="container mt-4">
     <h1 class="mb-4">Blog Posts</h1>
     <div class="row">
         {% for blog in blogs %}
-        <div class="col-md-6 mb-4">
+        <div class="col-md-4 mb-4">  <!-- Changed from col-md-6 to col-md-4 -->
             <div class="card shadow-sm h-100" style="border-radius: 10px; overflow: hidden; transition: transform 0.2s ease-in-out;">
                 {% if blog.image %}
                 <img src="{{ blog.image.url }}" 

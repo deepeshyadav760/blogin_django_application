@@ -71,6 +71,7 @@ def add_default_categories():
    for cat_name in categories:
        Category.objects.get_or_create(name=cat_name)
 
+
 # # Update create_blog view
 # @login_required
 # def create_blog(request):
@@ -97,8 +98,15 @@ def add_default_categories():
 #    categories = Category.objects.all()
 #    return render(request, 'Myblogapp/create_blog.html', {'categories': categories})
 
+
+
+
+
 @login_required
 def create_blog(request):
+    # Add default categories if none exist
+    if Category.objects.count() == 0:
+        add_default_categories()
     if request.method == 'POST':
         title = request.POST['title']
         content = request.POST['content']
